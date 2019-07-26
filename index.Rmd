@@ -1,0 +1,64 @@
+---
+title: "Schedule"
+---
+
+
+Here's the plan for this quarter.
+
+```{r, include = FALSE}
+library(kableExtra)
+library(tidyverse)
+library(DT)
+```
+
+Original example:
+
+```{r, echo = FALSE, include = FALSE}
+
+slides <- tribble(~link, ~description, 
+                  "../../../slides/bookdown.html#1", "Full slide deck",
+                  "../../../slides/bookdown.html#outline", "Outline", 
+                  "../../../slides/bookdown.html#start", "Get started",
+                  "../../../slides/bookdown.html#publish", "Publishing")
+
+slides %>%
+  mutate(slide = cell_spec(description, 
+                           "html", 
+                           link = link)
+  ) %>% 
+  datatable(escape = FALSE)
+```
+
+
+
+
+```{r, echo = FALSE}
+tbl <- tribble(~Week, ~Weekday, ~Date, ~Topic, ~Slides, ~Labs,
+                1, "Mon", "Sept 1", "Welcome", "", "",
+                "", "Wed", "Sept 3", "Data Viz I", "Slides", "", 
+                2, "Mon", "Sept 8", "No Class", "", "",
+                "", "Wed", "Sept 10", "Data Viz II", "Slides", "Lab 1")
+             
+
+slides_url <- c("https://rstudio4edu.github.io/basic-workshop-site/",
+              "https://rstudio4edu.github.io/basic-course-website/",
+              NA,
+              "https://rstudio4edu.github.io/fancy-course-distill")
+
+lab_url <- c("", 
+             "", 
+             NA, 
+             "lab1.html")
+  
+
+ tbl %>% 
+  mutate(
+    Labs = cell_spec(Labs, "html", link = lab_url),
+    Slides = cell_spec(Slides, "html", link = slides_url)) %>%
+  datatable(escape = FALSE) 
+
+```
+
+* Would be nice to put Readings...but possible to do bulleted list within a cell and/or combo of plain text and link?
+
+* Icons in cells?
